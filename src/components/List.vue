@@ -4,7 +4,7 @@
       <p class="title">{{item.title}}</p>
       <div class="btn-container">
         <button type="button" class="edit-btn">
-          <eva-icon name="edit" fill="limegreen"></eva-icon>
+          <eva-icon name="edit" fill="limegreen" @click="editItem(item.id)"></eva-icon>
         </button>
         <button type="button" class="delete-btn" @click="removeItem(item.id)">
           <eva-icon name="trash-2" fill="red"></eva-icon>
@@ -36,6 +36,9 @@ export default {
   methods:{
     removeItem(id){
       this.$emit("removeItem",id)
+    },
+    editItem(id){
+      this.$emit("editItem",id)
     }
   }
 }

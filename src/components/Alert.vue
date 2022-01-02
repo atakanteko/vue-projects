@@ -17,10 +17,6 @@ export default {
     alert:{
       type: Object,
       required: true
-    },
-    list:{
-      type: Array,
-      required: true
     }
   },
   created() {

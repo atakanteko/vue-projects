@@ -10,7 +10,7 @@
       </div>
     </form>
     <div class="grocery-container" v-if="this.list.length > 0">
-      <List :items="this.list" @removeItem="removeItem"/>
+      <List :items="this.list" @removeItem="removeItem" @editItem="editItem"/>
       <button class="clear-btn" @click="clearList">clear items</button>
     </div>
   </section>
@@ -42,9 +42,19 @@ export default {
     handleSubmit(){
       if (!this.name){
         // display alert (input is empty)
-        this.showAlert(true,'danger','please enter value')
+
       } else if (this.name && this.isEditing){
         // handle edit
+        this.showAlert(true,'success','item is edited')
+        this.list = this.list.map(item =>{
+          if (item.id === this.editID){
+            return {...item, title:this.name}
+          }
+        })
+        this.name = ''
+        this.editID = null
+        this.isEditing = false
+        this.showAlert(true,'danger','please enter value')
       } else {
         // add item and show alert
         this.showAlert(true,'success','item added to the list')
@@ -56,19 +66,25 @@ export default {
         this.name = ''
       }
     },
-    showAlert(show=false,type="",msg=""){
+    showAlert(show=false,type="",msg="")  {
       this.alert = {...this.alert, show: show, msg: msg, type: type}
     },
     removeAlert(signal){
       this.alert = {...this.alert, show: signal, msg: '', type: ''}
     },
-    clearList(){
+    clearList() {
       this.showAlert(true,"danger","empty list")
       this.list = []
     },
-    removeItem(id){
+    removeItem(id) {
       this.showAlert(true,"danger","item removed")
       this.list = this.list.filter(m => m.id !== id)
+    },
+    editItem(id) {
+      const targetItem = this.list.find(m => m.id === id);
+      this.isEditing = true;
+      this.editID = id;
+      this.name = targetItem.title
     }
   }
 }
