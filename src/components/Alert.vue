@@ -17,14 +17,17 @@ export default {
     alert:{
       type: Object,
       required: true
+    },
+    list:{
+      type: Array,
+      required: true
     }
   },
   created() {
    setTimeout(()=>{
       this.$emit("removeAlert",false)
     },3000)
-
-  }
+  },
 }
 </script>
 

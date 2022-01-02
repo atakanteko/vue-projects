@@ -10,7 +10,7 @@
       </div>
     </form>
     <div class="grocery-container" v-if="this.list.length > 0">
-      <List :items="this.list"/>
+      <List :items="this.list" @removeItem="removeItem"/>
       <button class="clear-btn" @click="clearList">clear items</button>
     </div>
   </section>
@@ -65,6 +65,10 @@ export default {
     clearList(){
       this.showAlert(true,"danger","empty list")
       this.list = []
+    },
+    removeItem(id){
+      this.showAlert(true,"danger","item removed")
+      this.list = this.list.filter(m => m.id !== id)
     }
   }
 }

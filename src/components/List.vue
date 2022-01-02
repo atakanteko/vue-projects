@@ -6,7 +6,7 @@
         <button type="button" class="edit-btn">
           <eva-icon name="edit" fill="limegreen"></eva-icon>
         </button>
-        <button type="button" class="edit-btn">
+        <button type="button" class="delete-btn" @click="removeItem(item.id)">
           <eva-icon name="trash-2" fill="red"></eva-icon>
         </button>
       </div>
@@ -33,6 +33,11 @@ export default {
       required: true
     }
   },
+  methods:{
+    removeItem(id){
+      this.$emit("removeItem",id)
+    }
+  }
 }
 </script>
 
