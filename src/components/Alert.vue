@@ -20,9 +20,10 @@ export default {
     }
   },
   created() {
-    setTimeout(()=>{
+   setTimeout(()=>{
       this.$emit("removeAlert",false)
     },3000)
+
   }
 }
 </script>

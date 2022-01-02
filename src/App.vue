@@ -11,7 +11,7 @@
     </form>
     <div class="grocery-container" v-if="this.list.length > 0">
       <List :items="this.list"/>
-      <button class="clear-btn">clear items</button>
+      <button class="clear-btn" @click="clearList">clear items</button>
     </div>
   </section>
 </template>
@@ -47,7 +47,7 @@ export default {
         // handle edit
       } else {
         // add item and show alert
-        console.log("1234")
+        this.showAlert(true,'success','item added to the list')
         const newItem = {
           id: new Date().getTime().toString(),
           title: this.name
@@ -61,6 +61,10 @@ export default {
     },
     removeAlert(signal){
       this.alert = {...this.alert, show: signal, msg: '', type: ''}
+    },
+    clearList(){
+      this.showAlert(true,"danger","empty list")
+      this.list = []
     }
   }
 }
