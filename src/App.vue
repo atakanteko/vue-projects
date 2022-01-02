@@ -5,8 +5,8 @@
       <h3>grocery list</h3>
       <div class="form-control">
         <input type="text" class="grocery" placeholder="e.g. a bottle of water" v-model="name"/>
-        <button type="submit" class="submit-btn" v-if="isEditing">edit</button>
-        <button type="submit" class="submit-btn" v-else>submit</button>
+        <button type="submit" class="submit-btn" v-if="isEditing" :class="{disableBtn : btnDisable}">edit</button>
+        <button type="submit" class="submit-btn" v-else :class="{disableBtn : btnDisable}">submit</button>
       </div>
     </form>
     <div class="grocery-container" v-if="this.list.length > 0">
@@ -35,6 +35,17 @@ export default {
         show: false,
         msg: '',
         type: ''
+      },
+      btnDisable:true
+    }
+  },
+  watch:{
+    name(){
+      if (this.name.length > 0){
+        this.btnDisable = false
+      }
+      else {
+        this.btnDisable = true
       }
     }
   },
@@ -42,10 +53,9 @@ export default {
     handleSubmit(){
       if (!this.name){
         // display alert (input is empty)
-
+        this.showAlert(true,'danger','fill input box')
       } else if (this.name && this.isEditing){
         // handle edit
-        this.showAlert(true,'success','item is edited')
         this.list = this.list.map(item =>{
           if (item.id === this.editID){
             return {...item, title:this.name}
@@ -54,7 +64,7 @@ export default {
         this.name = ''
         this.editID = null
         this.isEditing = false
-        this.showAlert(true,'danger','please enter value')
+        this.showAlert(true,'success','item is edited')
       } else {
         // add item and show alert
         this.showAlert(true,'success','item added to the list')
@@ -90,6 +100,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+ .disableBtn {
+   opacity: 0.65;
+   pointer-events: none;
+ }
 </style>
