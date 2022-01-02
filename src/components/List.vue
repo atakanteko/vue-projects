@@ -1,9 +1,9 @@
 <template>
-  <main>
-    <h2>alert component</h2>
+  <div>
+    <h2>list component</h2>
     <eva-icon name="edit"></eva-icon>
     <eva-icon name="trash-2"></eva-icon>
-  </main>
+  </div>
 </template>
 
 <script>

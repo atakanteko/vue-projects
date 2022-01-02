@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <div>
     <h2>alert component</h2>
-  </main>
+  </div>
 </template>
 
 <script>
