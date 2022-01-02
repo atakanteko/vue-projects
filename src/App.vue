@@ -1,7 +1,7 @@
 <template>
   <section class="section-center">
     <form @submit.prevent="handleSubmit">
-      <Alert v-if="alert.show"/>
+      <Alert v-if="alert.show" :alert="this.alert" @removeAlert="removeAlert"/>
       <h3>grocery list</h3>
       <div class="form-control">
         <input type="text" class="grocery" placeholder="e.g. a bottle of water" v-model="name"/>
@@ -42,7 +42,7 @@ export default {
     handleSubmit(){
       if (!this.name){
         // display alert (input is empty)
-        console.log("loglog")
+        this.showAlert(true,'danger','please enter value')
       } else if (this.name && this.isEditing){
         // handle edit
       } else {
@@ -56,6 +56,12 @@ export default {
         this.name = ''
       }
     },
+    showAlert(show=false,type="",msg=""){
+      this.alert = {...this.alert, show: show, msg: msg, type: type}
+    },
+    removeAlert(signal){
+      this.alert = {...this.alert, show: signal, msg: '', type: ''}
+    }
   }
 }
 </script>
