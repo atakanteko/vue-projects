@@ -1,6 +1,6 @@
 <template>
   <section class="section-center">
-    <form @submit="handleSubmit">
+    <form @submit.prevent="handleSubmit">
       <Alert v-if="alert.show"/>
       <h3>grocery list</h3>
       <div class="form-control">
@@ -9,8 +9,8 @@
         <button type="submit" class="submit-btn" v-else>submit</button>
       </div>
     </form>
-    <div class="grocery-container">
-      <List />
+    <div class="grocery-container" v-if="this.list.length > 0">
+      <List :items="this.list"/>
       <button class="clear-btn">clear items</button>
     </div>
   </section>
@@ -40,8 +40,22 @@ export default {
   },
   methods:{
     handleSubmit(){
-      console.log("loglog")
-    }
+      if (!this.name){
+        // display alert (input is empty)
+        console.log("loglog")
+      } else if (this.name && this.isEditing){
+        // handle edit
+      } else {
+        // add item and show alert
+        console.log("1234")
+        const newItem = {
+          id: new Date().getTime().toString(),
+          title: this.name
+        }
+        this.list = [...this.list, newItem]
+        this.name = ''
+      }
+    },
   }
 }
 </script>

@@ -1,8 +1,18 @@
 <template>
   <div>
-    <h2>list component</h2>
-    <eva-icon name="edit"></eva-icon>
-    <eva-icon name="trash-2"></eva-icon>
+    <article class="grocery-item" v-for="(item, index) in this.items" :key="index">
+      <p class="title">{{item.title}}</p>
+      <div class="btn-container">
+        <button type="button" class="edit-btn">
+          <eva-icon name="edit" fill="limegreen"></eva-icon>
+        </button>
+        <button type="button" class="edit-btn">
+          <eva-icon name="trash-2" fill="red"></eva-icon>
+        </button>
+      </div>
+    </article>
+
+
   </div>
 </template>
 
@@ -15,6 +25,12 @@ export default {
   data() {
     return {
 
+    }
+  },
+  props:{
+    items:{
+      type: Array,
+      required: true
     }
   },
 }
