@@ -47,6 +47,9 @@ export default {
       else {
         this.btnDisable = true
       }
+    },
+    list(){
+      localStorage.setItem('list',JSON.stringify(this.list))
     }
   },
   methods:{
@@ -95,6 +98,14 @@ export default {
       this.isEditing = true;
       this.editID = id;
       this.name = targetItem.title
+    }
+  },
+  created() {
+    let list = localStorage.getItem('list')
+    if (list){
+      this.list = JSON.parse(localStorage.getItem('list'))
+    } else {
+      this.list = []
     }
   }
 }
