@@ -5,7 +5,7 @@
     <section v-else class="section">
       <h2 class="section-title">cocktails</h2>
       <div class="cocktails-center">
-        <Cocktail v-for="(item,index) in getCocktails[0]" :key="index" :item="item"/>
+        <Cocktail v-for="(item,index) in getCocktails" :key="index" :item="item"/>
       </div>
     </section>
   </div>

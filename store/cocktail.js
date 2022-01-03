@@ -24,7 +24,6 @@ export const actions = {
     try {
       const response = await axios.get(`${url}${context.getters['getSearchTerm']}`)
       const {drinks} = response.data
-      console.log(drinks)
       if (drinks) {
         const newCocktails = drinks.map(item => {
           const {
@@ -67,7 +66,7 @@ export const mutations = {
     state.searchTerm = payload
   },
   [SET_COCKTAILS](state,payload){
-    state.cocktails = [...state.cocktails, payload]
+    state.cocktails = payload
   }
 }
 
