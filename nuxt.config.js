@@ -1,4 +1,6 @@
 export default {
+  ssr:false,
+  target:'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: '03-cocktails',
@@ -41,5 +43,8 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  generate: {
+    fallback: true
   }
 }
