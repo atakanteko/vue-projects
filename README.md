@@ -1,1 +1,1 @@
-# https://atakantekoglu-tour-project.netlify.app/
+# https://vue-projects-tours.netlify.app
