@@ -43,6 +43,7 @@ export const actions = {
             glass: strGlass,
           }
         })
+        console.log("new",newCocktails)
         await context.dispatch('setCocktails',newCocktails)
       } else {
         await context.dispatch('setCocktails',[])

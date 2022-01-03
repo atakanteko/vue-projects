@@ -15,15 +15,5 @@ export default {
     SearchForm,
     CocktailList
   },
-  methods:{
-    ...mapActions({
-      setCocktails: 'cocktail/setCocktails',
-      setSearchTerm: 'cocktail/setSearchTerm'
-    }),
-  },
-  created() {
-    this.setSearchTerm("d")
-  },
-
 }
 </script>

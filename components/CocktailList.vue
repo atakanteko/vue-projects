@@ -1,20 +1,33 @@
 <template>
   <div>
-<!--    <h2>cocktail list component</h2>-->
     <Loading v-if="getLoading"/>
     <h2 v-else-if="getCocktails.length < 1" class="section-title">no cocktails matched your search criteria</h2>
-    <h2 v-else>cocktail list</h2>
+    <section v-else class="section">
+      <h2 class="section-title">cocktails</h2>
+      <div class="cocktails-center">
+        <Cocktail v-for="(item,index) in getCocktails[0]" :key="index" :item="item"/>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 import Loading from "./Loading";
+import Cocktail from "./Cocktail";
 export default {
-  components: {Loading},
+  components: {Cocktail, Loading},
   computed:{
     ...mapGetters('cocktail',['getLoading','getCocktails'])
-  }
-
+  },
+  methods:{
+    ...mapActions({
+      setCocktails: 'cocktail/setCocktails',
+      setSearchTerm: 'cocktail/setSearchTerm'
+    }),
+  },
+  created() {
+    this.setSearchTerm("d")
+  },
 }
 </script>
