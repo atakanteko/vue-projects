@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import SearchForm from "../components/SearchForm";
 import CocktailList from "../components/CocktailList";
 export default {
